@@ -16,7 +16,9 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use('/',sendMail)
+app.get('/', function (req, res) {
+    res.json({ user: 'geek' });
+});
 const PORT=process.env.PORT
 const isLocal=process.env.LOCAL
 
