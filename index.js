@@ -17,15 +17,19 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', sendMail);
+app.get("/", (req, res) => {
+  res.render("ContactUs");
+});
+app.post('/contactUs',sendMail)
 
-// ✅ Conditional server or export
-const isLocal = process.env.LOCAL === "true";
 
-if (isLocal) {
-  app.listen(PORT, () => {
-    console.log("Running locally on http://localhost:" + PORT);
-  });
-}
+ // ✅ Conditional server or export
+// const isLocal = process.env.LOCAL === "true";
+
+// if (isLocal) {
+//   app.listen(PORT, () => {
+//     console.log("Running locally on http://localhost:" + PORT);
+//   });
+// }
   // ✅ Export for Vercel
 export default serverless(app);

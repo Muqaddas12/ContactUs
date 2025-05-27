@@ -8,10 +8,6 @@ const PASSWORD = process.env.PASSWORD
 
 const sendMail = express.Router();
 
-sendMail.get("/", (req, res) => {
-  res.render("ContactUs");
-});
-
 sendMail.post("/contactUs", async (req, res) => {
   const { firstName, lastName, email, phone, message } = req.body;
 
@@ -39,10 +35,10 @@ sendMail.post("/contactUs", async (req, res) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    res.send("Message sent successfully!");
+   return res.redirect('/?msg=Message sent successfully!')
   } catch (error) {
     console.error("Error sending email:", error);
-    res.status(500).send("Something went wrong.");
+   return res.redirect('/?msg=Something went wrong.')
   }
 });
 
