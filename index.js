@@ -4,6 +4,8 @@ import { fileURLToPath } from "url";
 import serverless from "serverless-http";
 import dotenv from "dotenv";
 import sendMail from "./routes/sendMail.mjs";
+import cors from 'cors'
+app.use(cors());
 dotenv.config();
 
 const app = express();
