@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import sendMail from "./routes/sendmail.mjs";
 import dotenv from 'dotenv'
+import serverless from "serverless-http";
 dotenv.config()
 const PORT=process.env.PORT||3000
 const app = express();
@@ -18,7 +19,13 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/', sendMail);
 
-// Export as Firebase Function with secrets enabled
-app.listen(PORT,()=>{
-  console.log('app is running ',PORT)
-})
+// ✅ Conditional server or export
+const isLocal = process.env.LOCAL === "true";
+
+if (isLocal) {
+  app.listen(PORT, () => {
+    console.log("Running locally on http://localhost:" + PORT);
+  });
+}
+  // ✅ Export for Vercel
+export const handler = serverless(app);
