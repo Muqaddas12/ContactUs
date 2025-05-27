@@ -5,7 +5,7 @@ import serverless from "serverless-http";
 import dotenv from "dotenv";
 import sendMail from "./routes/sendMail.mjs";
 import cors from 'cors'
-app.use(cors());
+
 dotenv.config();
 
 const app = express();
@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
 app.use('/',sendMail)
 const PORT=process.env.PORT
 const isLocal=process.env.LOCAL
