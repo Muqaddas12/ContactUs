@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import serverless from "serverless-http";
+// import serverless from "serverless-http";
 import dotenv from "dotenv";
 import sendMail from "./routes/sendMail.mjs";
 import cors from 'cors'
@@ -29,4 +29,4 @@ if(isLocal==='true'){
   })
 }
 
-export default serverless(app); 
+// export default serverless(app); 
