@@ -59,5 +59,6 @@ app.post("/contactUs", async (req, res) => {
 
 
 
-export const handler = serverless(app); // ✅ Vercel expects a named export called `handler`
+export default serverless(app);
+
 
